@@ -1,0 +1,11 @@
+package io;
+
+
+
+
+public class ScoreDTO {
+	private String hak, name;
+	private int Kor, eng, math, tot;
+	private double avg;
+	
+}

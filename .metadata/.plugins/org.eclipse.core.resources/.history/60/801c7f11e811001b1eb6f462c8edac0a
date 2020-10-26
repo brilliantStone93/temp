@@ -1,0 +1,33 @@
+package io;
+
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public class ByteStream {
+	
+	
+	
+	
+	public static void main(String[] args) throws IOException {
+		
+//			BufferedInputStream bis = new BufferedInputStream(new FileInputStream("data.txt"));
+//			위에 한 줄과 밑에 두 줄은 같은 의미
+		FileInputStream fis = new FileInputStream("data.txt");
+		BufferedInputStream bis = new BufferedInputStream(fis);
+		
+		int data;
+		
+		
+		while((data = bis.read()) != -1	) {
+			System.out.print(data);
+		}
+		
+		bis.close();
+			
+	
+		
+		
+	}//main
+}//

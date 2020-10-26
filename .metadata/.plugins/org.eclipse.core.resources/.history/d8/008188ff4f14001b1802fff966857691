@@ -1,0 +1,29 @@
+package network;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.URL;
+
+public class URLTest2 {
+
+
+	public static void main(String[] args) throws IOException {
+		URL url = new URL ( "http://www.liebli.com/");
+		
+		Socket s= new Socket(); 
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+		br.readLine();
+		String line = null;
+		while((line = br. readLine()) != null) {
+			System.out.println(line);
+		}
+		
+		System.out.println("14k의 개수 = " );
+		//대소문자 구별없이 다 찾아오기 14k갯수
+	}
+}

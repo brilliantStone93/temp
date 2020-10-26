@@ -1,0 +1,36 @@
+package network;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import java.net.URL;
+
+public class URLTest2 {
+
+
+	public static void main(String[] args) throws IOException {
+		URL url = new URL ( "http://www.liebli.com/");
+		
+		 
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+		String line =  br.readLine();
+		
+		System.out.println(line);
+		
+		line.toLowerCase();
+		
+		String after = null; 
+		after = line.replace("14k", "04k");
+		int count = 0;
+		for(int i = 0 ; i<line.length(); i++) {
+			if(line.charAt(i) != after.charAt(i)) {
+				count++;
+			}
+		}
+		
+		System.out.println("14k의 개수 = " +count);
+		//대소문자 구별없이 다 찾아오기 14k갯수
+	}
+}

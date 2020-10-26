@@ -1,0 +1,7 @@
+package io;
+
+public interface Score {
+
+	public void input(ScoreDTO dto);
+
+}

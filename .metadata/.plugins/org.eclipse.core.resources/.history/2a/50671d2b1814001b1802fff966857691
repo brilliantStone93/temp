@@ -1,0 +1,16 @@
+package network;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+public class InetAddressTest {
+	public static void main(String[] args) throws UnknownHostException {
+//		InetAddress naver = new InetAddress(); // InetAddress에는 기본생성자()가없어서 생성이 안된다
+		InetAddress naver = InetAddress.getByName("www.naver.com"); // 추상 클래스가 아님
+		System.out.println("NAVER IP =" + naver.getHostAddress());
+		System.out.println();
+		
+	
+	}//main 
+	
+}//

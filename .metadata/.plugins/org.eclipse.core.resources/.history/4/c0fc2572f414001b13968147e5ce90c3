@@ -1,0 +1,9 @@
+package network;
+
+enum Info{
+	JOIN, EXIT, SEND
+}
+
+public class InfoDTO {
+
+}

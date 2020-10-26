@@ -1,0 +1,12 @@
+package io;
+
+
+import java.util.List;
+
+public interface Score {
+
+	public void input(ScoreDTO dto);
+
+	public List<ScoreDTO> print(ScoreForm scoreForm);
+
+}

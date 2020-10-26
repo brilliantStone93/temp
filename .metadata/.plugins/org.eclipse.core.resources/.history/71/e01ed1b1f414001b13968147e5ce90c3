@@ -1,0 +1,13 @@
+package network;
+
+enum Info{
+	JOIN, EXIT, SEND
+}
+
+public class InfoDTO {
+	//BufferedReader , printWriter 사용하지 않는다
+	//객채(InfoDTO)로 데이터를 넘기고 받고 
+	//ObjectInputStream, ObjectOutPutStream을 써야함
+	
+	
+}

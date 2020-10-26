@@ -1,0 +1,51 @@
+package day1020;
+
+import java.awt.Container;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+
+public class ExTryNotepad extends JFrame{
+	private ExMenuPane emp;
+	private JTextArea ja;
+	
+	public ExTryNotepad() {
+		super("간의 메모장");
+		ja = new JTextArea();
+		emp = new ExMenuPane();
+		
+		this.setJMenuBar(emp);
+		JScrollPane scroll = new JScrollPane(ja);
+		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		Container c = new Container();
+		c.add("Center", scroll);
+		
+		
+		
+		
+		
+	
+		
+		
+		setVisible(true);
+		setBounds(100, 100, 500, 500);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		
+		
+		
+	}//생성자
+	
+	private void event() {
+		
+	}//event
+	
+	public static void main(String[] args) {
+		new ExTryNotepad().event();
+		
+	}//main
+
+
+	
+}//

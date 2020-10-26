@@ -1,0 +1,22 @@
+package network;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+public class InetAddressTest {
+	public static void main(String[] args) throws UnknownHostException {
+		
+		//naver ip알아보기
+//		InetAddress naver = new InetAddress(); // InetAddress에는 기본생성자()가없어서 생성이 안된다
+		InetAddress naver = InetAddress.getByName("www.naver.com"); // 추상 클래스가 아님
+		System.out.println("NAVER IP =" + naver.getHostAddress()); //  210.89.164.90 네이버 아이피 가져옴
+		System.out.println();
+		
+		
+		//내 ip알아뵉
+		InetAddress local = InetAddress.getlocalHost();
+		System.out.println("loclhost IP = "+ local.getHostAddress());
+	
+	}//main 
+	
+}//

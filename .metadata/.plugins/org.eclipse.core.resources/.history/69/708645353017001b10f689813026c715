@@ -1,0 +1,138 @@
+package network;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.List;
+
+public class ChatHandlerObject extends Thread{
+	private Socket socket;
+	private List<ChatHandlerObject> list;
+	
+	private ObjectOutputStream oo ;
+	private ObjectInputStream oi;
+	
+	
+	
+	
+	
+	public ChatHandlerObject (Socket socket, List<ChatHandlerObject> list) throws IOException {
+		this.socket = socket;
+		this.list = list;
+		
+		oo = new ObjectOutputStream(socket.getOutputStream());
+		oi = new ObjectInputStream(socket.getInputStream());
+		//oi가 먼저 잡히면 쓰레드가 메세지를 잡지 못한다
+		// 따라서 출력을 먼저 잡아줘야한다.
+
+	}// 생성자
+	
+	
+	@Override
+	public void run() {
+		 //클라이언트로 부터 받는 쪽
+		InfoDTO dto = null;
+		
+		while(true) {
+			
+			try {	
+				dto = (InfoDTO)oi.readObject();
+				if(dto.getCommeand() == Info.JOIN) {
+					InfoDTO sendDTO = new InfoDTO();
+					sendDTO.setCommeand(Info.JOIN);
+					sendDTO.setMessage(dto.getNickName()+"님 입장하였습니다");
+					broadcast(sendDTO);
+					
+				}else if(dto.getCommeand() == Info.EXIT) {
+					InfoDTO sendDTO = new InfoDTO();
+					//quit 를 보낸 클라이언트에게 quit를 보내기(나에게)
+					sendDTO.setCommeand(Info.EXIT);
+					
+					oo.writeObject(sendDTO);									
+					oo.flush();
+					
+					oo.close();
+					oi.close();
+					socket.close();
+					
+					
+					//남은 클라이언트에게 퇴장 메세지 보내기
+					list.remove(this);
+					sendDTO.setCommeand(Info.SEND);
+					sendDTO.setMessage(dto.getNickName() + "님 퇴장하였습니다");
+					broadcast(sendDTO);
+					
+					break; //System.Exit 하면 안됨
+					
+				}else if(dto.getCommeand() == Info.SEND) {
+					InfoDTO sendDTO = new InfoDTO();
+					sendDTO.setNickName(dto.getNickName());
+					sendDTO.setMessage(dto.getMessage());
+					broadcast(sendDTO);
+				}
+			} catch (IOException | ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}//while
+	
+			
+//		
+//			//닉네임 받는쪽
+//		try {
+//			
+//			while(true) {	
+//				InfoDTO dto = (InfoDTO)oi.readObject();
+//				InfoDTO dto2 = new InfoDTO();
+//				if(dto.getCommeand() == Info.JOIN) {
+//					//모든 클라이언트에게 입장메세지를 보내기
+//					
+//					dto2.setNickName(dto.getNickName());
+//					dto2.setMessage("님 입장하였습니다");
+//					broadcast(dto2);
+//				}
+//				else if(dto.getCommeand() == Info.EXIT) {
+//					dto2.setNickName(dto.getNickName());
+//					dto2.setMessage("님 퇴장하였습니다");
+//					broadcast(dto2);
+//					break; 
+//				}
+//				else if(dto.getCommeand() == Info.SEND) {
+//					dto2.setNickName(dto.getNickName());
+//					dto2.setMessage(dto.getMessage());
+//					broadcast(dto2);
+//					
+//				}
+//			}//while
+//			
+//			list.remove(this);
+//			
+//			oi.close();
+//			oo.close();
+//			socket.close();
+//		} catch (IOException | ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//
+//	
+//	
+		
+	}//run
+	
+	public void broadcast(InfoDTO dto) {//다른사람들에게 메세지 뿌려주는 메소드
+		for(ChatHandlerObject ch : list) {
+			try {
+				ch.oo.writeObject(dto);
+				ch.oo.flush();
+			
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		
+		}
+		
+	}//boradcast
+}

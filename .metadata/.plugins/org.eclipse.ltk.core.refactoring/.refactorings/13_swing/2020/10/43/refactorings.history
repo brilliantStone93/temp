@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;swing.Dr&apos; to &apos;DrCanvas&apos;&#x0D;&#x0A;- Original project: &apos;13_swing&apos;&#x0D;&#x0A;- Original element: &apos;swing.Dr&apos;&#x0D;&#x0A;- Renamed element: &apos;swing.DrCanvas&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Dr&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;swing{Dr.java[Dr" matchStrategy="1" name="DrCanvas" qualified="false" references="true" similarDeclarations="false" stamp="1603077653473" textual="false" version="1.0"/>
+</session>

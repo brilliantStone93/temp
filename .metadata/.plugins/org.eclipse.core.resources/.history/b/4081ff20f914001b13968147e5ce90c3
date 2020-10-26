@@ -1,0 +1,53 @@
+package network;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class ChatClientObject extends JFrame {
+	private JTextField output;
+	private JButton send;
+	private JTextArea input;
+	
+	
+	
+	
+	
+	public ChatClientObject() {
+		super("채팅창");
+		
+		//JTextField
+		output = new JTextField();
+				
+		
+		//JButton
+		send = new JButton("보내기");
+		
+		
+		//JTextArea
+		input = new JTextArea();
+		
+		
+		JPanel p = new JPanel();
+		p.setLayout(new BorderLayout());
+		p.add("West", send);
+		p.add("East", input);
+		
+		Container c = this.getContentPane();
+		c.add("South", p);
+		
+		setVisible(true);
+		setBounds(300,200, 300,300);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		
+	}
+	public static void main(String [] args) {
+		new ChatClientObject();
+	}
+}

@@ -1,0 +1,40 @@
+package network;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.List;
+
+public class ChatHandler extends Thread{
+	private Socket socket;
+	private List<ChatHandler> list;
+	private BufferedReader br;
+	private PrintWriter pw;
+	
+	
+	public ChatHandler (Socket socket, List<ChatHandler> list) {
+		socket = socket;
+		list = list;
+		try {
+			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
+	
+	@Override
+	public void run() {
+		
+		
+	}
+}

@@ -1,0 +1,4 @@
+dto.setNickName(nickName);
+		dto.setCommeand(Info.SEND);
+		dto.setMessage(line);
+		

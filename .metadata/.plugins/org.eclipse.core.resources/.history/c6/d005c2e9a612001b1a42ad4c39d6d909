@@ -1,0 +1,24 @@
+package io;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+public class MenuPane extends JMenuBar{
+	private JMenu fileM, editM, viewM;
+	private JMenuItem newM, openM, saveM, exitM, cutM, copM, pasteM;
+	
+	
+	
+	public MenuPane() {
+		fileM = new JMenu("파일");
+		
+		newM = new JMenuItem("새로만들기");
+		
+		fileM.add(newM);
+		
+		add(fileM);
+	}
+	
+	
+}//

@@ -1,0 +1,81 @@
+package network;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+
+public class ChatClient extends JFrame	{
+	private JTextField input;
+	private JButton send;
+	private JTextArea output;
+	
+	public ChatClient() {
+		super("채팅창");
+		//JTextField
+		input = new JTextField();
+		input.setBackground(new Color(230,255,255));
+		
+		//JButton
+		send = new JButton("보내기");
+		
+		//JTextArea
+		output = new JTextArea();
+		output.setBackground(new Color(200,255,255));
+		output.setEditable(false); // 채팅창에 글을 못쓰도록 막은것, 여기는 내용을 받아줄 부분
+		
+		
+		JScrollPane scroll = new JScrollPane(output);
+		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		//스크롤바 계속 세로줄에 있게해주는 것
+		
+		
+		JPanel p = new JPanel();
+		p.setLayout(new BorderLayout());
+		p.add("Center", input);
+		p.add("East", send);
+		
+		Container c = this.getContentPane();
+		c.add("Center", scroll);
+		c.add("South", p);
+		
+		
+		
+		
+		
+		
+		setVisible(true);
+		setBounds(200, 200, 300, 300);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	
+	
+	}//ChatClient()
+	
+	public void service() {
+		//서버IP
+//		String serverIP = JOptionPane.showInputDialog(this,"서버IP를 입력하세요", "서버IP", JOptionPane.INFORMATION_MESSAGE);
+		String serverIP = JOptionPane.showInputDialog(this, "서버IP를 입력하세요", "192.168.0.");
+		if(serverIP == null || serverIP.length() == 0) {
+			System.out.println("서버 IP가 입력되지 않았습니다");
+			System.exit(0);
+		}
+		
+		String nickName = JOptionPane.showInputDialog(this, "닉네임을 입력하세요", "닉네임", JOptionPane.INFORMATION_MESSAGE);
+		if(nickName == null || nickName.length() == 0) {
+			nickName = "guest";
+		}
+	}//service
+	
+	public static void main(String[] args) {
+		new ChatClient().service();;
+	}
+}

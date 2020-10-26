@@ -1,0 +1,50 @@
+package network;
+
+import java.awt.Container;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class ChatClient extends JFrame	{
+	private JTextField input;
+	private JButton send;
+	private JTextArea output;
+	
+	public ChatClient() {
+		super("√§∆√√¢");
+		//JTextField
+		input = new JTextField();
+		
+		//JButton
+		send = new JButton();
+		
+		//JTextArea
+		output = new JTextArea();
+		
+		JPanel p = new JPanel();
+		p.add(input);
+		p.add(send);
+		
+		Container c = new Container();
+		c.add("Center", output);
+		c.add("South", p);
+		
+		
+		
+		
+		
+		
+		setVisible(true);
+		setBounds(200, 200, 300, 300);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	
+	
+	}
+	
+	public static void main(String[] args) {
+		new ChatClient();
+	}
+}

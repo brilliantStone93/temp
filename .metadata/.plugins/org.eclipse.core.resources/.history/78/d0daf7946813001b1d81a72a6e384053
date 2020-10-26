@@ -1,0 +1,11 @@
+package io;
+
+import java.util.ArrayList;
+
+public interface Score {
+
+	public void input(ScoreDTO dto);
+
+	public ArrayList<ScoreDTO> print(ScoreForm scoreForm);
+
+}

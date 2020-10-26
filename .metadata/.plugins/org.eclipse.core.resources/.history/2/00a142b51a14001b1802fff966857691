@@ -1,0 +1,19 @@
+package network;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class URLTest {
+	
+	public static void main(String[] args) throws MalformedURLException {
+		
+		//URL을 알면 밑에 있는 것들을 알 수 있다
+		URL url = new URL ("http://www.google.com/index.html");
+		System.out.println("프로토콜 = " + url.getProtocol());
+		System.out.println("호스트 = "+ url.getHost());
+		System.out.println("포트 = "+ url.getPort());
+		System.out.println("기본 포트 = "+ url.getDefaultPort());
+		System.out.println("파일  ="+ url.getFile());
+		System.out.println();
+	}
+}

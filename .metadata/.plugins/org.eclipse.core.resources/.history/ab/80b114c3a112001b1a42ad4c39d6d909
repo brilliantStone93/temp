@@ -1,0 +1,51 @@
+package io;
+
+import java.awt.Container;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+
+public class TryNotepad extends JFrame{
+	private JTextArea output;
+	
+	
+	
+	public TryNotepad() {
+		super("간단메모장");
+		
+		output = new JTextArea();
+		
+		Container c = this.getContentPane();
+		c.add("Center", output);
+		
+		
+		
+		
+		
+		
+		
+		setVisible(true);
+		setBounds(100,100,500,500);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+				
+			}
+		});
+		
+		
+		
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		new TryNotepad();
+	}
+
+}

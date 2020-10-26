@@ -1,0 +1,9 @@
+package network;
+
+public class ChatHandler extends Thread{
+	@Override
+	public void run() {
+		
+		
+	}
+}

@@ -1,0 +1,75 @@
+package io;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
+import javax.swing.JFileChooser;
+import javax.swing.table.DefaultTableModel;
+
+public class ScoreImpl implements Score {
+	private List<ScoreDTO> list;
+	private File file;
+	
+	public ScoreImpl() {
+		list = new ArrayList<ScoreDTO>();
+	}
+
+	@Override
+	public void input(ScoreDTO dto) {
+		list.add(dto);
+		
+	}
+
+	
+	
+	@Override
+	public void print(DefaultTableModel model) {
+		//테이블 초기화, 안해줄시 기존에 것이 남아있어서 중복되어 나올 수 있음
+		model.setRowCount(0);
+		
+		for(ScoreDTO dto : list) {
+			Vector<String> v = new Vector<String>();
+			v.add(dto.getHak());
+			v.add(dto.getName());
+			v.add(dto.getKor()+ "");
+			v.add(dto.getEng()+ "");
+			v.add(dto.getMath()+"");
+			v.add(dto.getTot()+"");
+			v.add(dto.getAvg()+"");
+			
+			model.addRow(v);
+		}//for
+		
+		
+		
+	}
+
+	@Override
+	public void save() {
+	
+		try {
+			BufferedWriter br = new BufferedWriter(new FileWriter(file));
+			for(ScoreDTO s : list) {
+				br.write(s+"");
+				
+			}
+			br.close();
+			
+		
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	
+}

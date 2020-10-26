@@ -1,0 +1,130 @@
+package io;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Vector;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+
+
+public class ScoreImpl implements Score {
+	private List<ScoreDTO> list;
+	
+	
+	public ScoreImpl() {
+		list = new ArrayList<ScoreDTO>();
+		
+	}
+
+	@Override
+	public void input(ScoreDTO dto) {
+		list.add(dto);
+		
+	}
+
+	
+	
+	@Override
+	public void print(DefaultTableModel model) {
+		//테이블 초기화, 안해줄시 기존에 것이 남아있어서 중복되어 나올 수 있음
+		model.setRowCount(0);
+		
+		for(ScoreDTO dto : list) {
+			Vector<String> v = new Vector<String>();
+			v.add(dto.getHak());
+			v.add(dto.getName());
+			v.add(dto.getKor()+ "");
+			v.add(dto.getEng()+ "");
+			v.add(dto.getMath()+"");
+			v.add(dto.getTot()+"");
+			v.add(dto.getAvg()+"");
+			
+			model.addRow(v);
+		}//for
+		
+		
+		
+	}
+
+	@Override
+	public void save() {
+		JFileChooser chooser = new JFileChooser(); 
+		int result = chooser.showSaveDialog(null);
+		File file = null;
+		
+		if(result == JFileChooser.APPROVE_OPTION) {
+			file = chooser.getSelectedFile();
+			
+		}
+		if(file == null )return;
+		
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+			
+			for(ScoreDTO dto : list) {
+				oos.writeObject(dto);
+			}
+			
+		}  catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	@Override
+	public void search(DefaultTableModel model) {
+		//showInputDialog를 이용해서 학번을 입력받는다.
+		  //만약 취소를 누르거나 학번을 입력하지 않으면 그냥 메소드를 나간다.
+		  
+		  //원하는 학번이 있으면 JTable에 출력해주면 된다.
+		  
+		  //원하는 학번이 없으면 showMessageDialog를 이용해서 "찾고자 하는 학번이 없습니다" 라고 출력한다. 
+		
+		
+		String hak = JOptionPane.showInputDialog("학번을 입력해주세요");
+		if(hak == null || hak =="") return;
+		model.setRowCount(0);
+		for(ScoreDTO s : list) {
+			if(s.getHak().equals(hak)) {
+				Vector<String> v = new Vector<String>();
+				v.add(s.getHak());
+				v.add(s.getName());
+				v.add(s.getKor()+"");
+				v.add(s.getEng()+"");
+				v.add(s.getMath()+"");
+				v.add(s.getTot()+"");
+				v.add(s.getAvg()+"");
+				model.addRow(v);
+			}
+		}
+		
+	}
+
+	@Override
+	public void tot_desc() {
+		Comparator<ScoreDTO> com = new Comparator<ScoreDTO>() {
+			public int compare(ScoreDTO s1, ScoreDTO s2) {
+				return s1.getTot()+"".compareTo(s2.getTot()+""); //오름차순 , 내림차순 변경은 -1을 곱해주면된다 
+													    //왜냐하면 비교값은 값은 1, 0, -1로 나와 return해주는데 이값을 -1을 곱해주어 역행시키면됨
+				}
+		};
+		Collections.sort(list, com);
+		
+	}
+	
+	
+	
+	
+}

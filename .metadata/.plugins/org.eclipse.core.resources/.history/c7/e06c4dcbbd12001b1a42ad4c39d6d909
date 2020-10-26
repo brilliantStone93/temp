@@ -1,0 +1,38 @@
+package day1020;
+
+import javax.swing.JFrame;
+
+public class ExTryNotepad extends JFrame{
+	private ExMenuPane emp;
+	
+	
+	public ExTryNotepad() {
+		super("간의 메모장");
+		
+		emp = new ExMenuPane();
+		
+		
+		
+		
+		setVisible(true);
+		setBounds(100, 100, 500, 500);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		
+		
+	}//생성자
+	
+	private void event() {
+		add(emp.getFileM());
+		add(emp.getEditM());
+		add(emp.getViewM());
+	}//event
+	
+	public static void main(String[] args) {
+		new ExTryNotepad().event();
+		
+	}//main
+
+
+	
+}//

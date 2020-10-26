@@ -1,0 +1,33 @@
+package method;
+
+public class MethodTest3 {
+	int a;//ÇÊµå
+	
+	public int sum(int a, int b){//µ¡¼À ¸Þ¼Òµå - ±¸Çö, ¸Þ¼Òµå(parameter, argument)
+		return a+b;
+		
+	}
+	
+	public int sub(int a, int b){
+		return a-b;
+	}
+	
+	public int 	mul(int a, int b) {
+		return a*b;
+	}
+	public double div(int a, int b) {
+		return (double)a/b;
+	}
+	
+	public static void main(String[] args) {
+		int a;//Áö¿ªº¯¼ö
+		
+		MethodTest3 mt = new MethodTest3();
+		System.out.println("ÇÕ = "+mt.sum(25, 36));//È£Ãâ
+		//È£Ãâ
+		System.out.println("Â÷ = "+mt.sub(25, 36));
+		System.out.println("°ö = "+mt.mul(25, 36));
+		System.out.printf("¸ò = %.2f", mt.div(25, 36));
+		//System.out.println("¸ò = "+ String.format("%.2f", mt.div(25, 36)));
+}
+}

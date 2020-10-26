@@ -1,0 +1,40 @@
+package day1020;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+public class ExMenuPane {
+	private JMenu fileM, editM, viewM;
+	private JMenuItem newM, openM, saveM, exitM, cutM, copyM, pasteM;
+	private ExTryNotepad etn;
+	
+	public ExMenuPane() {
+		fileM = new JMenu();
+		editM = new JMenu();
+		viewM = new JMenu();
+		
+		newM = new JMenuItem("새로만들기");
+		openM = new JMenuItem("열기");
+		saveM = new JMenuItem("저장하기");
+		exitM = new JMenuItem("종료하기");
+		cutM  = new JMenuItem("자르기");
+		copyM = new JMenuItem("복사하기");
+		pasteM = new JMenuItem("붙여넣기");
+		
+		
+		fileM.add(newM);
+		fileM.add(openM);
+		fileM.add(saveM);
+		fileM.add(exitM);
+		
+		editM.add(cutM);
+		editM.add(copyM);
+		editM.add(pasteM);
+		
+		etn.add(fileM);
+		etn.add(editM);
+		etn.add(viewM);
+		
+	}
+}

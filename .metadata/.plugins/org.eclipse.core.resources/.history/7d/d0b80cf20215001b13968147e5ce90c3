@@ -1,0 +1,86 @@
+package network;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class ChatClientObject extends JFrame {
+	private JTextField input;
+	private JButton send;
+	private JTextArea output;
+	
+	private Socket socket;
+	private ObjectInputStream oi;
+	private ObjectOutputStream ow;
+	
+	
+	
+	public ChatClientObject() {
+		super("채팅창");
+		
+		//JTextField
+		input = new JTextField();
+		
+		
+		
+		//JButton
+		send = new JButton("보내기");
+		
+		
+		//JTextArea
+		output = new JTextArea();
+		output.setEditable(false);
+		
+		JScrollPane scroll = new JScrollPane(output); 
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		
+		JPanel p = new JPanel();
+		p.setLayout(new BorderLayout());
+		p.add("East", send);
+		p.add("Center", input);
+		
+		Container c = this.getContentPane();
+		c.add("South", p);
+		c.add("Center", scroll );
+		
+		setVisible(true);
+		setBounds(300,200, 300,300);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		
+	}
+	
+	private void service() {
+		String serverIP = JOptionPane.showInputDialog(this, "서버 ip를 입력해주세요", "192.168.0.");
+		if(serverIP == null || serverIP.length() == 0) {
+			System.out.println("서버 ip가 입력되지 않았습니다");
+			System.exit(0);
+		}
+		
+		String nickName = JOptionPane.showInputDialog(this, "닉네임을 입력해주세요");
+		if(nickName == null || nickName.length() == 0) {
+			System.out.println("닉네임이 입력되지 않았습니다");
+			System.exit(0);
+		}
+		
+		socket = new Socket();
+		
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		new ChatClientObject().service();
+	}
+}

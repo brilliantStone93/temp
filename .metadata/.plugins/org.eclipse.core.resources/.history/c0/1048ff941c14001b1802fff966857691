@@ -1,0 +1,31 @@
+package network;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class URLTest {
+	
+	public static void main(String[] args) throws MalformedURLException {
+		
+		//URL을 알면 밑에 있는 것들을 알 수 있다
+		URL url = new URL ("http://www.google.com/index.html");
+		System.out.println("프로토콜 = " + url.getProtocol());
+		System.out.println("호스트 = "+ url.getHost());
+		System.out.println("포트 = "+ url.getPort()); // 
+		System.out.println("기본 포트 = "+ url.getDefaultPort());
+		System.out.println("파일  ="+ url.getFile());
+		System.out.println();
+		
+		//프로토콜 = http
+		//호스트 = www.google.com
+		//포트 = -1
+		//기본 포트 = 80
+		//파일  =/index.html
+		// 결과가 이렇게 나온다  포트번호는 위에 안 적어서 기본 -1 이 나옴
+		
+		
+		
+		
+
+	}
+}

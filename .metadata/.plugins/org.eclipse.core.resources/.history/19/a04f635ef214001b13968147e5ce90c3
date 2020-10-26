@@ -1,0 +1,61 @@
+package network;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.List;
+
+public class ChatHandler extends Thread{
+	private Socket socket;
+	private List<ChatHandler> list;
+	private BufferedReader br;
+	private PrintWriter pw;
+	
+	
+	public ChatHandler (Socket socket, List<ChatHandler> list) throws IOException {
+		this.socket = socket;
+		this.list = list;
+		
+		br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+		
+		
+	}
+	
+	
+	@Override
+	public void run() {
+		//닉네임 받는쪽
+		try {
+			String nickName = br.readLine();
+			//모든 클라이언트에게 보내기
+			
+			boradcast(nickName + "님 입장하였습니다");
+			
+			
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
+		
+		while(true) {
+			
+		}//while
+		
+	}//run
+	
+	public void boradcast(String msg) {
+		for(ChatHandler ch : list) {
+			ch.pw.println(msg);
+			ch.pw.flush();
+		}
+		
+		
+		
+	}//boradcast
+	
+}//

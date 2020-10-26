@@ -1,0 +1,20 @@
+package io;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ScoreImpl implements Score {
+	private List<ScoreDTO> list;
+	
+	public ScoreImpl() {
+		list = new ArrayList<ScoreDTO>();
+	}
+
+	@Override
+	public void input(ScoreDTO dto) {
+		list.add(dto);
+		
+	}
+	
+	
+}
